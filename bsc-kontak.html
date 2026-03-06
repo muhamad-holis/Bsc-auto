@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontak – BSC Auto Serang</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #f5f2ee;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gray: #1a1a1a;
+  --gray2: #2e2e2e;
+  --gray-light: #888;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; min-height: 100vh; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 5%;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 4px; color: var(--gold); text-decoration: none; }
+.nav-logo span { color: var(--white); }
+.nav-back { display: flex; align-items: center; gap: .5rem; color: var(--gray-light); text-decoration: none; font-size: .82rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; }
+.nav-back:hover { color: var(--gold); }
+
+/* HERO KONTAK */
+.hero-kontak {
+  padding: 10rem 5% 5rem;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.hero-kontak::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-kontak::after {
+  content: 'KONTAK';
+  position: absolute; bottom: -1rem; right: 3%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12rem; color: rgba(201,168,76,.04);
+  line-height: 1; pointer-events: none; user-select: none;
+}
+.page-tag { font-size: .72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: .7rem; }
+.page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: 2px; line-height: .95; margin-bottom: 1rem; }
+.page-title .stroke { -webkit-text-stroke: 2px var(--white); color: transparent; }
+.page-sub { color: var(--gray-light); font-size: .97rem; line-height: 1.75; font-weight: 300; max-width: 500px; }
+
+/* MAIN GRID */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0;
+  min-height: 70vh;
+}
+
+/* INFO PANEL */
+.info-panel {
+  padding: 4rem 5%;
+  background: var(--gray);
+  border-right: 1px solid rgba(255,255,255,.06);
+  position: relative;
+}
+
+.info-section { margin-bottom: 3rem; }
+.info-tag { font-size: .68rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; display: flex; align-items: center; gap: .7rem; }
+.info-tag::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,.2); }
+
+/* KONTAK CARDS */
+.kontak-card {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.4rem;
+  background: var(--black);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 2px;
+  margin-bottom: 1px;
+  transition: border-color .3s, background .3s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.kontak-card:hover { border-color: rgba(201,168,76,.4); background: rgba(201,168,76,.04); }
+.k-icon-box {
+  width: 3rem; height: 3rem;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+  transition: background .3s;
+}
+.kontak-card:hover .k-icon-box { background: rgba(201,168,76,.2); }
+.k-card-label { font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
+.k-card-val { font-size: .95rem; font-weight: 600; color: var(--white); margin-bottom: .15rem; }
+.k-card-hint { font-size: .75rem; color: var(--gray-light); font-weight: 300; }
+
+/* JAM OPERASIONAL */
+.jam-grid { display: grid; gap: 1px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.06); }
+.jam-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 1.2rem;
+  background: var(--black);
+  font-size: .88rem;
+}
+.jam-row.today { background: rgba(201,168,76,.08); border-left: 2px solid var(--gold); }
+.jam-day { color: var(--gray-light); font-weight: 300; }
+.jam-row.today .jam-day { color: var(--gold); font-weight: 600; }
+.jam-time { font-weight: 600; color: var(--white); }
+.jam-open { display: inline-flex; align-items: center; gap: .4rem; font-size: .7rem; letter-spacing: 1px; text-transform: uppercase; color: #4caf50; background: rgba(76,175,80,.1); padding: .25rem .6rem; border-radius: 2px; }
+.jam-dot { width: 5px; height: 5px; background: #4caf50; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* LOKASI MAP */
+.map-box {
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.map-placeholder {
+  background: var(--gray2);
+  aspect-ratio: 16/9;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: background .3s;
+  text-decoration: none;
+}
+.map-placeholder:hover { background: #383838; }
+.map-pin { font-size: 2.5rem; }
+.map-txt { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: var(--gold); }
+.map-addr { font-size: .8rem; color: var(--gray-light); text-align: center; max-width: 260px; line-height: 1.5; }
+.map-btn-wrap { padding: 1rem; background: var(--black); display: flex; gap: 1px; }
+.map-btn { flex: 1; text-align: center; padding: .75rem; background: var(--gray); font-size: .78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-light); text-decoration: none; transition: all .3s; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.map-btn:hover { background: var(--gold); color: var(--black); font-weight: 700; }
+.map-btn.primary { background: rgba(201,168,76,.15); color: var(--gold); }
+.map-btn.primary:hover { background: var(--gold); color: var(--black); }
+
+/* FORM PANEL */
+.form-panel { padding: 4rem 5%; }
+.form-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; margin-bottom: .5rem; }
+.form-sub { color: var(--gray-light); font-size: .88rem; font-weight: 300; margin-bottom: 2.5rem; line-height: 1.6; }
+
+.f-group { margin-bottom: 1.2rem; }
+.f-label { display: block; font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); margin-bottom: .45rem; }
+.f-input {
+  width: 100%; background: var(--gray); border: 1px solid rgba(255,255,255,.08);
+  color: var(--white); padding: .9rem 1rem; font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; border-radius: 2px; outline: none; transition: border-color .3s, background .3s;
+}
+.f-input:focus { border-color: var(--gold); background: rgba(201,168,76,.04); }
+.f-input::placeholder { color: #555; }
+textarea.f-input { resize: vertical; min-height: 120px; }
+
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* MINAT CHIPS */
+.minat-grid { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.minat-chip {
+  padding: .4rem .9rem; border: 1px solid rgba(255,255,255,.1);
+  border-radius: 2px; font-size: .78rem; color: var(--gray-light);
+  cursor: pointer; transition: all .3s; user-select: none; background: transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+.minat-chip:hover { border-color: rgba(201,168,76,.4); color: var(--gold); }
+.minat-chip.active { background: rgba(201,168,76,.15); border-color: var(--gold); color: var(--gold); font-weight: 600; }
+
+/* BUDGET SLIDER */
+.budget-display {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .5rem;
+}
+.budget-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; color: var(--gold); }
+input[type=range] {
+  width: 100%; -webkit-appearance: none; height: 4px;
+  background: linear-gradient(90deg, var(--gold) var(--pct, 30%), rgba(255,255,255,.1) var(--pct, 30%));
+  border-radius: 2px; outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--gold); border: 2px solid var(--black);
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.budget-range-labels { display: flex; justify-content: space-between; font-size: .68rem; color: #555; margin-top: .4rem; }
+
+/* SUBMIT */
+.submit-area { margin-top: 2rem; }
+.btn-submit {
+  width: 100%; background: var(--gold); color: var(--black); padding: 1rem;
+  font-weight: 700; font-size: .92rem; letter-spacing: 1.5px; text-transform: uppercase;
+  border: none; cursor: pointer; border-radius: 2px; transition: all .3s;
+  font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: .6rem;
+}
+.btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,.3); }
+.submit-note { text-align: center; font-size: .75rem; color: #555; margin-top: .8rem; }
+
+/* SOSMED */
+.sosmed-section { padding: 3rem 5%; background: var(--gray); border-top: 1px solid rgba(255,255,255,.06); }
+.sosmed-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 1.5rem; }
+.sosmed-grid { display: flex; gap: 1px; flex-wrap: wrap; }
+.sosmed-btn {
+  display: flex; align-items: center; gap: .7rem;
+  padding: 1rem 1.5rem; background: var(--black); text-decoration: none;
+  color: var(--gray-light); font-size: .85rem; transition: all .3s;
+  border: 1px solid rgba(255,255,255,.06); flex: 1; min-width: 160px;
+}
+.sosmed-btn:hover { color: var(--gold); border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.05); }
+.sosmed-icon { font-size: 1.3rem; }
+.sosmed-info { display: flex; flex-direction: column; }
+.sosmed-name { font-weight: 600; font-size: .82rem; color: var(--white); }
+.sosmed-handle { font-size: .72rem; color: var(--gray-light); }
+
+/* SUCCESS TOAST */
+.toast {
+  position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: #1e1e1e; border: 1px solid var(--gold);
+  color: var(--white); padding: 1rem 2rem; border-radius: 2px;
+  font-size: .88rem; z-index: 999; opacity: 0;
+  transition: all .4s; pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* FOOTER */
+footer {
+  background: var(--black); border-top: 1px solid rgba(255,255,255,.06);
+  padding: 2.5rem 5%; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.f-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 4px; color: var(--gold); }
+.f-copy { font-size: .78rem; color: var(--gray-light); }
+.f-links { display: flex; gap: 1.5rem; list-style: none; }
+.f-links a { font-size: .78rem; color: var(--gray-light); text-decoration: none; transition: color .3s; }
+.f-links a:hover { color: var(--gold); }
+
+/* WA FLOAT */
+.wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; background: #25d366; width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.4); animation: floatY 3s ease-in-out infinite; }
+.wa-float:hover { animation-play-state: paused; box-shadow: 0 8px 30px rgba(37,211,102,.6); }
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.fade1 { animation: fadeUp .6s .1s ease both; }
+.fade2 { animation: fadeUp .6s .2s ease both; }
+.fade3 { animation: fadeUp .6s .3s ease both; }
+.fade4 { animation: fadeUp .6s .4s ease both; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .main-grid { grid-template-columns: 1fr; }
+  .info-panel { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .f-row { grid-template-columns: 1fr; }
+  .hero-kontak::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="bsc-auto.html" class="nav-logo">BSC<span> AUTO</span></a>
+  <a href="bsc-auto.html" class="nav-back">← Kembali ke Beranda</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-kontak">
+  <div class="page-tag fade1">Hubungi Kami</div>
+  <h1 class="page-title fade2">SIAP BANTU<br><span class="stroke">KAMU HARI INI</span></h1>
+  <p class="page-sub fade3">Tim BSC Auto siap melayani konsultasi kendaraan Anda setiap hari. Isi form di bawah atau langsung hubungi kami via WhatsApp.</p>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+
+  <!-- INFO PANEL -->
+  <div class="info-panel fade3">
+
+    <!-- Kontak Langsung -->
+    <div class="info-section">
+      <div class="info-tag">Kontak Langsung</div>
+
+      <a href="https://wa.me/6285121032383" class="kontak-card" target="_blank">
+        <div class="k-icon-box">📱</div>
+        <div>
+          <div class="k-card-label">WhatsApp</div>
+          <div class="k-card-val">0851-2103-2383</div>
+          <div class="k-card-hint">Chat sekarang, respon cepat</div>
+        </div>
+      </a>
+
+      <a href="tel:085121032383" class="kontak-card">
+        <div class="k-icon-box">📞</div>
+        <div>
+          <div class="k-card-label">Telepon</div>
+          <div class="k-card-val">0851-2103-2383</div>
+          <div class="k-card-hint">Senin – Minggu, 08.00 – 21.00</div>
+        </div>
+      </a>
+
+      <div class="kontak-card">
+        <div class="k-icon-box">📍</div>
+        <div>
+          <div class="k-card-label">Alamat Showroom</div>
+          <div class="k-card-val">Jl. Ayip Usman, Kebaharan</div>
+          <div class="k-card-hint">Kec. Serang, Kota Serang, Banten 42119</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jam Operasional -->
+    <div class="info-section">
+      <div class="info-tag">Jam Operasional</div>
+      <div class="jam-grid" id="jam-grid"></div>
+    </div>
+
+    <!-- Lokasi Map -->
+    <div class="info-section">
+      <div class="info-tag">Lokasi</div>
+      <div class="map-box">
+        <a href="https://maps.app.goo.gl/MRL5A63BZDsm9N8LA" target="_blank" class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div class="map-txt">BSC Auto Serang</div>
+          <div class="map-addr">Jl. Ayip Usman, Kebaharan, Kec. Serang, Kota Serang, Banten 42119</div>
+        </a>
+        <div class="map-btn-wrap">
+          <a href="https://maps.app.goo.gl/MRL5A63BZDsm9N8LA" target="_blank" class="map-btn primary">🗺️ Buka Google Maps</a>
+          <a href="https://wa.me/6285121032383?text=Halo BSC Auto, saya butuh petunjuk arah ke showroom" class="map-btn">📱 Minta Petunjuk</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FORM PANEL -->
+  <div class="form-panel fade4">
+    <div class="form-title">Konsultasi Gratis</div>
+    <p class="form-sub">Isi form di bawah dan tim kami akan menghubungi Anda via WhatsApp dalam waktu singkat.</p>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">Nama Lengkap *</label>
+        <input type="text" class="f-input" id="f-nama" placeholder="Nama Anda">
+      </div>
+      <div class="f-group">
+        <label class="f-label">Nomor WhatsApp *</label>
+        <input type="tel" class="f-input" id="f-wa" placeholder="08xx-xxxx-xxxx">
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Domisili</label>
+      <input type="text" class="f-input" id="f-kota" placeholder="Contoh: Serang, Cilegon, Tangerang...">
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Jenis Kendaraan yang Diminati</label>
+      <div class="minat-grid" id="minat-grid">
+        <button class="minat-chip" onclick="toggleChip(this)">MPV (Avanza, Xpander)</button>
+        <button class="minat-chip" onclick="toggleChip(this)">City Car (Brio, Agya)</button>
+        <button class="minat-chip" onclick="toggleChip(this)">SUV (Rush, Terios)</button>
+        <button class="minat-chip" onclick="toggleChip(this)">Pick Up / Niaga</button>
+        <button class="minat-chip" onclick="toggleChip(this)">Sedan</button>
+        <button class="minat-chip" onclick="toggleChip(this)">Semua Jenis</button>
+      </div>
+    </div>
+
+    <div class="f-group" style="margin-top:1.2rem;">
+      <label class="f-label">Estimasi Budget</label>
+      <div class="budget-display">
+        <span style="font-size:.75rem;color:var(--gray-light);">Geser untuk sesuaikan</span>
+        <span class="budget-val" id="budget-val">Rp 150 Juta</span>
+      </div>
+      <input type="range" id="budget-slider" min="50" max="500" value="150" step="10" oninput="updateBudget(this)">
+      <div class="budget-range-labels"><span>Rp 50 Jt</span><span>Rp 500 Jt</span></div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Metode Pembelian</label>
+      <select class="f-input" id="f-metode">
+        <option value="">-- Pilih --</option>
+        <option value="Cash">Cash / Tunai</option>
+        <option value="Kredit / KPM">Kredit / KPM</option>
+        <option value="Tukar Tambah">Tukar Tambah</option>
+        <option value="Belum Tahu">Belum Tahu</option>
+      </select>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Pesan / Pertanyaan</label>
+      <textarea class="f-input" id="f-pesan" placeholder="Contoh: Saya cari Avanza 2020 ke atas, warna gelap, kondisi prima..."></textarea>
+    </div>
+
+    <div class="submit-area">
+      <button class="btn-submit" onclick="kirimWA()">
+        📱 Kirim via WhatsApp
+      </button>
+      <div class="submit-note">Dengan mengirim, Anda setuju dihubungi oleh tim BSC Auto</div>
+    </div>
+  </div>
+</div>
+
+<!-- SOSMED -->
+<div class="sosmed-section">
+  <div class="sosmed-title">Ikuti Kami di Sosial Media</div>
+  <div class="sosmed-grid">
+    <a href="https://wa.me/6285121032383" class="sosmed-btn" target="_blank">
+      <span class="sosmed-icon">💬</span>
+      <span class="sosmed-info">
+        <span class="sosmed-name">WhatsApp</span>
+        <span class="sosmed-handle">0851-2103-2383</span>
+      </span>
+    </a>
+    <a href="#" class="sosmed-btn">
+      <span class="sosmed-icon">📸</span>
+      <span class="sosmed-info">
+        <span class="sosmed-name">Instagram</span>
+        <span class="sosmed-handle">@bscauto.serang</span>
+      </span>
+    </a>
+    <a href="#" class="sosmed-btn">
+      <span class="sosmed-icon">🎵</span>
+      <span class="sosmed-info">
+        <span class="sosmed-name">TikTok</span>
+        <span class="sosmed-handle">@bscauto</span>
+      </span>
+    </a>
+    <a href="#" class="sosmed-btn">
+      <span class="sosmed-icon">📘</span>
+      <span class="sosmed-info">
+        <span class="sosmed-name">Facebook</span>
+        <span class="sosmed-handle">BSC Auto Serang</span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">BSC AUTO</div>
+  <div class="f-copy">© 2025 BSC Auto · Kebaharan, Serang · All rights reserved</div>
+  <ul class="f-links">
+    <li><a href="bsc-auto.html">Beranda</a></li>
+    <li><a href="bsc-auto.html#unit">Unit</a></li>
+    <li><a href="bsc-kontak.html">Kontak</a></li>
+  </ul>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/6285121032383" class="wa-float">💬</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Pesan terkirim! Tim kami akan segera menghubungi Anda.</div>
+
+<script>
+// JAM OPERASIONAL
+var days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+var today = new Date().getDay();
+var jamGrid = document.getElementById('jam-grid');
+days.forEach(function(d, i) {
+  var row = document.createElement('div');
+  row.className = 'jam-row' + (i === today ? ' today' : '');
+  row.innerHTML =
+    '<span class="jam-day">' + d + (i === today ? ' <span class="jam-open"><span class="jam-dot"></span> Buka Sekarang</span>' : '') + '</span>' +
+    '<span class="jam-time">08.00 – 21.00</span>';
+  jamGrid.appendChild(row);
+});
+
+// BUDGET SLIDER
+function updateBudget(el) {
+  var val = parseInt(el.value);
+  document.getElementById('budget-val').textContent = 'Rp ' + val + ' Juta';
+  var pct = ((val - 50) / (500 - 50) * 100).toFixed(1) + '%';
+  el.style.setProperty('--pct', pct);
+}
+updateBudget(document.getElementById('budget-slider'));
+
+// CHIPS
+function toggleChip(el) {
+  el.classList.toggle('active');
+}
+
+// KIRIM WA
+function kirimWA() {
+  var nama = document.getElementById('f-nama').value.trim();
+  var wa = document.getElementById('f-wa').value.trim();
+  if (!nama || !wa) {
+    showToast('⚠️ Mohon isi Nama dan WhatsApp terlebih dahulu.');
+    return;
+  }
+  var kota = document.getElementById('f-kota').value || '-';
+  var budget = document.getElementById('budget-val').textContent;
+  var metode = document.getElementById('f-metode').value || '-';
+  var pesan = document.getElementById('f-pesan').value || '-';
+  var chips = Array.from(document.querySelectorAll('.minat-chip.active')).map(function(c){ return c.textContent; });
+  var minat = chips.length ? chips.join(', ') : '-';
+
+  var text =
+    'Halo BSC Auto! 👋\n\n' +
+    '━━━━━━━━━━━━━━━\n' +
+    '📋 *DATA KONSULTASI*\n' +
+    '━━━━━━━━━━━━━━━\n' +
+    '👤 Nama     : ' + nama + '\n' +
+    '📱 WA       : ' + wa + '\n' +
+    '📍 Domisili : ' + kota + '\n' +
+    '🚗 Minat    : ' + minat + '\n' +
+    '💰 Budget   : ' + budget + '\n' +
+    '💳 Metode   : ' + metode + '\n' +
+    '💬 Pesan    : ' + pesan + '\n' +
+    '━━━━━━━━━━━━━━━\n' +
+    'Mohon informasinya, terima kasih!';
+
+  window.open('https://wa.me/6285121032383?text=' + encodeURIComponent(text), '_blank');
+  showToast('✅ Membuka WhatsApp...');
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3500);
+}
+</script>
+</body>
+</html>
